@@ -535,3 +535,222 @@ section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"][aria-current=
 section[data-testid="stSidebar"] [data-testid="stSidebarNav"] > div > div > div:first-child:empty {
     display: none;
 }
+/* ==========================================================
+   CORREÇÕES DE CONTRASTE E CABEÇALHO - VERSÃO 2.1
+   Mantém o visual original e impede textos claros em fundo claro.
+   ========================================================== */
+
+/* Cor padrão segura para toda a aplicação */
+[data-testid="stAppViewContainer"],
+[data-testid="stAppViewContainer"] .main,
+[data-testid="stAppViewContainer"] .block-container {
+    color: var(--dino-texto) !important;
+}
+
+/* Textos gerados pelo Streamlit e pelo Markdown */
+[data-testid="stAppViewContainer"] .stMarkdown,
+[data-testid="stAppViewContainer"] .stMarkdown p,
+[data-testid="stAppViewContainer"] .stMarkdown span,
+[data-testid="stAppViewContainer"] .stMarkdown div,
+[data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"],
+[data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] span,
+[data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] li,
+[data-testid="stAppViewContainer"] [data-testid="stText"],
+[data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] {
+    color: var(--dino-texto) !important;
+}
+
+/* Títulos com contraste forte */
+[data-testid="stAppViewContainer"] h1,
+[data-testid="stAppViewContainer"] h2,
+[data-testid="stAppViewContainer"] h3,
+[data-testid="stAppViewContainer"] h4,
+[data-testid="stAppViewContainer"] h5,
+[data-testid="stAppViewContainer"] h6 {
+    color: var(--dino-marrom-escuro) !important;
+}
+
+/* Labels dos componentes */
+[data-testid="stWidgetLabel"],
+[data-testid="stWidgetLabel"] p,
+[data-testid="stWidgetLabel"] span,
+.stSelectbox label,
+.stTextInput label,
+.stTextArea label,
+.stNumberInput label,
+.stDateInput label,
+.stFileUploader label,
+.stRadio label,
+.stCheckbox label,
+.stSlider label {
+    color: var(--dino-texto) !important;
+    font-weight: 650 !important;
+}
+
+/* Botões: texto sempre branco, inclusive elementos internos */
+.stButton > button,
+.stFormSubmitButton > button,
+.stDownloadButton > button,
+.stButton > button p,
+.stButton > button span,
+.stFormSubmitButton > button p,
+.stFormSubmitButton > button span,
+.stDownloadButton > button p,
+.stDownloadButton > button span {
+    color: #ffffff !important;
+}
+
+/* Cards e containers brancos: texto escuro */
+div[data-testid="stForm"],
+details[data-testid="stExpander"],
+div[data-testid="stMetric"],
+div[data-testid="stDataFrame"],
+.pet-card,
+.painel-card,
+.atalho-card {
+    color: var(--dino-texto) !important;
+}
+
+div[data-testid="stForm"] p,
+details[data-testid="stExpander"] p,
+div[data-testid="stMetric"] p,
+.pet-card p,
+.painel-card p,
+.atalho-card p {
+    color: var(--dino-texto-suave) !important;
+}
+
+/* Métricas */
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] p {
+    color: var(--dino-texto-suave) !important;
+}
+
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] div {
+    color: var(--dino-marrom-escuro) !important;
+    font-weight: 800 !important;
+}
+
+/* Selectbox, multiselect e menus suspensos */
+div[data-baseweb="select"] *,
+div[data-baseweb="popover"] *,
+ul[role="listbox"] *,
+li[role="option"] * {
+    color: var(--dino-texto) !important;
+}
+
+div[data-baseweb="popover"],
+ul[role="listbox"] {
+    background: #ffffff !important;
+}
+
+/* Upload de arquivos */
+[data-testid="stFileUploaderDropzone"] {
+    background: #ffffff !important;
+    border: 1px dashed var(--dino-borda) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] p,
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] small {
+    color: var(--dino-texto-suave) !important;
+}
+
+/* Alertas: preserva contraste em qualquer tema do navegador */
+div[data-testid="stAlert"] p,
+div[data-testid="stAlert"] span,
+div[data-testid="stAlert"] div {
+    color: #1f2937 !important;
+}
+
+/* Sidebar: textos normais escuros; item selecionado branco */
+section[data-testid="stSidebar"] {
+    color: var(--dino-texto) !important;
+}
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label {
+    color: var(--dino-texto) !important;
+}
+
+section[data-testid="stSidebar"] [aria-current="page"],
+section[data-testid="stSidebar"] [aria-current="page"] p,
+section[data-testid="stSidebar"] [aria-current="page"] span {
+    color: #ffffff !important;
+}
+
+/* ==========================================================
+   CABEÇALHO DO STREAMLIT
+   Fica sempre escuro e não alterna para branco.
+   ========================================================== */
+
+header[data-testid="stHeader"] {
+    background: #111827 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+header[data-testid="stHeader"]::before {
+    background: #111827 !important;
+}
+
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"] {
+    background: transparent !important;
+}
+
+header[data-testid="stHeader"] button,
+header[data-testid="stHeader"] button span,
+header[data-testid="stHeader"] button svg,
+[data-testid="stToolbar"] button,
+[data-testid="stToolbar"] button span,
+[data-testid="stToolbar"] button svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* Menu do canto superior direito */
+[data-testid="stMainMenu"] button,
+[data-testid="stToolbarActions"] button {
+    color: #ffffff !important;
+}
+
+/* Evita faixa branca atrás do cabeçalho */
+[data-testid="stAppViewContainer"] {
+    min-height: 100vh;
+}
+
+/* Links */
+a,
+[data-testid="stAppViewContainer"] a {
+    color: var(--dino-laranja) !important;
+}
+
+[data-testid="stAppViewContainer"] a:hover {
+    color: var(--dino-marrom-escuro) !important;
+}
+
+/* Botões continuam brancos mesmo quando são links */
+.stButton a,
+.stDownloadButton a,
+.stButton a:hover,
+.stDownloadButton a:hover {
+    color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   AJUSTES MOBILE DO CABEÇALHO
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    header[data-testid="stHeader"] {
+        min-height: 3rem !important;
+    }
+
+    .main .block-container {
+        padding-top: 1.25rem !important;
+    }
+}
