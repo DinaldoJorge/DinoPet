@@ -683,11 +683,11 @@ section[data-testid="stSidebar"] [aria-current="page"] span {
 }
 
 /* ==========================================================
-   CABEÇALHO DO STREAMLIT E MENU LATERAL - CORRIGIDO
-   Mantém o botão da sidebar visível no computador e no celular.
+   CABEÇALHO DO STREAMLIT E MENU LATERAL - CORREÇÃO DEFINITIVA
+   Compatível com versões antigas e novas do Streamlit.
    ========================================================== */
 
-/* Mantém o cabeçalho do Streamlit ativo, pois o botão do menu fica nele */
+/* O cabeçalho precisa continuar ativo: o botão do menu fica dentro dele. */
 header[data-testid="stHeader"],
 [data-testid="stHeader"] {
     display: flex !important;
@@ -695,30 +695,44 @@ header[data-testid="stHeader"],
     opacity: 1 !important;
     height: 3.5rem !important;
     min-height: 3.5rem !important;
-    background: rgba(255, 253, 249, 0.97) !important;
+    background: rgba(255, 253, 249, 0.98) !important;
     border-bottom: 1px solid rgba(253, 186, 116, 0.45) !important;
     box-shadow: 0 2px 10px rgba(124, 45, 18, 0.06) !important;
     z-index: 999990 !important;
 }
 
-/* Esconde somente os controles superiores que não são necessários */
+/* IMPORTANTE: não esconda stToolbar nem stToolbarActions.
+   Nas versões novas do Streamlit, o botão da sidebar pode ficar dentro deles. */
 [data-testid="stToolbar"],
+[data-testid="stToolbarActions"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Esconde apenas controles superiores dispensáveis. */
 [data-testid="stDecoration"],
 [data-testid="stStatusWidget"],
-[data-testid="stToolbarActions"],
+[data-testid="stDeployButton"],
 [data-testid="stMainMenu"],
 #MainMenu {
     display: none !important;
     visibility: hidden !important;
 }
 
-/* Botão de abrir e recolher o menu lateral */
+/* Botão da sidebar: seletores antigos e novos do Streamlit. */
 button[data-testid="stSidebarExpandButton"],
 button[data-testid="stSidebarCollapseButton"],
-[data-testid="collapsedControl"] {
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+header[data-testid="stHeader"] button[aria-label*="sidebar" i],
+header[data-testid="stHeader"] button[aria-label*="menu" i],
+[data-testid="stHeader"] button[aria-label*="sidebar" i],
+[data-testid="stHeader"] button[aria-label*="menu" i] {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    pointer-events: auto !important;
     align-items: center !important;
     justify-content: center !important;
     width: 44px !important;
@@ -726,39 +740,43 @@ button[data-testid="stSidebarCollapseButton"],
     min-width: 44px !important;
     min-height: 44px !important;
     padding: 0 !important;
+    margin: 0 !important;
     background: linear-gradient(135deg, var(--dino-marrom), var(--dino-laranja)) !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
     border-radius: 11px !important;
     box-shadow: 0 5px 15px rgba(124, 45, 18, 0.34) !important;
-    z-index: 1000000 !important;
+    z-index: 1000001 !important;
 }
 
-/* Posição do botão quando a sidebar estiver fechada */
+/* Posição do botão quando o menu lateral estiver fechado. */
 button[data-testid="stSidebarExpandButton"],
-[data-testid="collapsedControl"] {
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+header[data-testid="stHeader"] button[aria-label*="sidebar" i],
+header[data-testid="stHeader"] button[aria-label*="menu" i] {
     position: fixed !important;
-    top: 0.45rem !important;
+    top: 0.42rem !important;
     left: 0.55rem !important;
 }
 
-/* Cor do desenho da seta/menu */
+/* Ícone branco. */
 button[data-testid="stSidebarExpandButton"] svg,
 button[data-testid="stSidebarCollapseButton"] svg,
-[data-testid="collapsedControl"] svg {
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="collapsedControl"] svg,
+header[data-testid="stHeader"] button[aria-label*="sidebar" i] svg,
+header[data-testid="stHeader"] button[aria-label*="menu" i] svg {
     color: #ffffff !important;
-    fill: none !important;
     stroke: #ffffff !important;
 }
 
-button[data-testid="stSidebarExpandButton"]:hover,
-button[data-testid="stSidebarCollapseButton"]:hover,
-[data-testid="collapsedControl"]:hover {
-    filter: brightness(1.08) !important;
-    transform: translateY(-1px) !important;
+/* Mantém o menu lateral acima do conteúdo. */
+section[data-testid="stSidebar"] {
+    z-index: 1000000 !important;
 }
 
-/* Evita que o conteúdo fique escondido atrás do cabeçalho */
+/* Evita que o conteúdo fique atrás do cabeçalho. */
 [data-testid="stAppViewContainer"] {
     margin-top: 0 !important;
     min-height: 100vh;
@@ -768,7 +786,7 @@ button[data-testid="stSidebarCollapseButton"]:hover,
     padding-top: 4.25rem !important;
 }
 
-/* Links */
+/* Links. */
 a,
 [data-testid="stAppViewContainer"] a {
     color: var(--dino-laranja) !important;
@@ -778,7 +796,6 @@ a,
     color: var(--dino-marrom-escuro) !important;
 }
 
-/* Botões continuam brancos mesmo quando são links */
 .stButton a,
 .stDownloadButton a,
 .stButton a:hover,
@@ -787,7 +804,7 @@ a,
 }
 
 /* ----------------------------------------------------------
-   AJUSTES MOBILE DO CABEÇALHO E SIDEBAR
+   MOBILE
    ---------------------------------------------------------- */
 
 @media (max-width: 900px) {
@@ -800,38 +817,44 @@ a,
         min-height: 3.5rem !important;
     }
 
-    button[data-testid="stSidebarExpandButton"],
-    button[data-testid="stSidebarCollapseButton"],
-    [data-testid="collapsedControl"] {
+    [data-testid="stToolbar"],
+    [data-testid="stToolbarActions"] {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+    }
+
+    button[data-testid="stSidebarExpandButton"],
+    button[data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="collapsedControl"],
+    header[data-testid="stHeader"] button[aria-label*="sidebar" i],
+    header[data-testid="stHeader"] button[aria-label*="menu" i],
+    [data-testid="stHeader"] button[aria-label*="sidebar" i],
+    [data-testid="stHeader"] button[aria-label*="menu" i] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
         width: 44px !important;
         height: 44px !important;
         min-width: 44px !important;
         min-height: 44px !important;
-        z-index: 1000000 !important;
-    }
-
-    button[data-testid="stSidebarExpandButton"],
-    [data-testid="collapsedControl"] {
-        top: 0.45rem !important;
-        left: 0.55rem !important;
+        z-index: 1000001 !important;
     }
 
     .main .block-container {
         padding-top: 4.25rem !important;
-    }
-
-    section[data-testid="stSidebar"] {
-        z-index: 999999 !important;
     }
 }
 
 @media (max-width: 520px) {
     button[data-testid="stSidebarExpandButton"],
     button[data-testid="stSidebarCollapseButton"],
-    [data-testid="collapsedControl"] {
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="collapsedControl"],
+    header[data-testid="stHeader"] button[aria-label*="sidebar" i],
+    header[data-testid="stHeader"] button[aria-label*="menu" i] {
         width: 42px !important;
         height: 42px !important;
         min-width: 42px !important;
@@ -842,4 +865,3 @@ a,
         padding-top: 4rem !important;
     }
 }
-
