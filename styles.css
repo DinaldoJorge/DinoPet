@@ -1,0 +1,537 @@
+/* ==========================================================
+   DINOPETANIMAL PRO
+   ARQUIVO GLOBAL DE ESTILOS
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   CORES PRINCIPAIS
+   ---------------------------------------------------------- */
+
+:root {
+    --dino-marrom-escuro: #7c2d12;
+    --dino-marrom: #9a3412;
+    --dino-laranja: #c2410c;
+    --dino-laranja-claro: #fb923c;
+    --dino-creme: #fff7ed;
+    --dino-creme-2: #ffedd5;
+    --dino-borda: #fdba74;
+    --dino-texto: #1f2937;
+    --dino-texto-suave: #475569;
+    --dino-fundo: #fffdf9;
+    --dino-branco: #ffffff;
+}
+
+/* ----------------------------------------------------------
+   PÁGINA PRINCIPAL
+   ---------------------------------------------------------- */
+
+html,
+body,
+[data-testid="stAppViewContainer"] {
+    background: var(--dino-fundo);
+}
+
+[data-testid="stAppViewContainer"] > .main {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(251, 146, 60, 0.08),
+            transparent 28%
+        ),
+        var(--dino-fundo);
+}
+
+.main .block-container {
+    max-width: 1180px;
+    padding-top: 2.2rem;
+    padding-bottom: 3rem;
+}
+
+/* ----------------------------------------------------------
+   TIPOGRAFIA
+   ---------------------------------------------------------- */
+
+html,
+body,
+p,
+div,
+span,
+label,
+input,
+textarea,
+button {
+    font-family:
+        "Segoe UI",
+        "Arial",
+        sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dino-texto);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+}
+
+p,
+label {
+    color: var(--dino-texto-suave);
+}
+
+/* ----------------------------------------------------------
+   SIDEBAR
+   ---------------------------------------------------------- */
+
+section[data-testid="stSidebar"] {
+    background:
+        linear-gradient(
+            180deg,
+            #fff7ed 0%,
+            #ffedd5 100%
+        );
+    border-right: 1px solid var(--dino-borda);
+}
+
+section[data-testid="stSidebar"] > div {
+    padding-top: 1rem;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] {
+    padding-top: 0.5rem;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] ul {
+    gap: 0.35rem;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a {
+    border-radius: 10px;
+    padding: 0.55rem 0.75rem;
+    color: var(--dino-texto);
+    transition: all 0.18s ease;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {
+    background: rgba(194, 65, 12, 0.12);
+    color: var(--dino-marrom-escuro);
+    transform: translateX(2px);
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-current="page"] {
+    background:
+        linear-gradient(
+            90deg,
+            var(--dino-marrom),
+            var(--dino-laranja)
+        );
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 5px 14px rgba(154, 52, 18, 0.18);
+}
+
+/* botão recolher/abrir sidebar */
+
+button[data-testid="stSidebarCollapseButton"],
+button[data-testid="stSidebarExpandButton"] {
+    border: 1px solid var(--dino-borda);
+    border-radius: 10px;
+    background: var(--dino-branco);
+    color: var(--dino-marrom);
+}
+
+/* ----------------------------------------------------------
+   BOTÕES
+   ---------------------------------------------------------- */
+
+.stButton > button,
+.stFormSubmitButton > button,
+.stDownloadButton > button {
+    width: 100%;
+    min-height: 46px;
+    border-radius: 11px;
+    border: 1px solid var(--dino-laranja);
+    background:
+        linear-gradient(
+            90deg,
+            var(--dino-marrom),
+            var(--dino-laranja)
+        );
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 5px 13px rgba(154, 52, 18, 0.16);
+    transition:
+        transform 0.17s ease,
+        box-shadow 0.17s ease,
+        filter 0.17s ease;
+}
+
+.stButton > button:hover,
+.stFormSubmitButton > button:hover,
+.stDownloadButton > button:hover {
+    color: white;
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(154, 52, 18, 0.24);
+}
+
+.stButton > button:active,
+.stFormSubmitButton > button:active,
+.stDownloadButton > button:active {
+    transform: translateY(0);
+}
+
+.stButton > button:disabled,
+.stFormSubmitButton > button:disabled,
+.stDownloadButton > button:disabled {
+    background: #cbd5e1;
+    border-color: #cbd5e1;
+    color: #64748b;
+    box-shadow: none;
+}
+
+/* ----------------------------------------------------------
+   CAMPOS DE FORMULÁRIO
+   ---------------------------------------------------------- */
+
+div[data-baseweb="input"] > div,
+div[data-baseweb="textarea"] > div,
+div[data-baseweb="select"] > div {
+    border-radius: 10px;
+    border-color: #fed7aa;
+    background: #ffffff;
+}
+
+div[data-baseweb="input"] > div:focus-within,
+div[data-baseweb="textarea"] > div:focus-within,
+div[data-baseweb="select"] > div:focus-within {
+    border-color: var(--dino-laranja);
+    box-shadow: 0 0 0 2px rgba(194, 65, 12, 0.12);
+}
+
+input,
+textarea {
+    color: var(--dino-texto) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+div[data-testid="stNumberInput"] button {
+    border-color: #fed7aa;
+}
+
+div[data-testid="stDateInput"] input {
+    border-radius: 10px;
+}
+
+/* ----------------------------------------------------------
+   FORMULÁRIOS E EXPANDERS
+   ---------------------------------------------------------- */
+
+div[data-testid="stForm"] {
+    border: 1px solid var(--dino-borda);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px rgba(124, 45, 18, 0.06);
+}
+
+details[data-testid="stExpander"] {
+    border: 1px solid var(--dino-borda);
+    border-radius: 14px;
+    background: white;
+    overflow: hidden;
+}
+
+details[data-testid="stExpander"] summary {
+    color: var(--dino-marrom-escuro);
+    font-weight: 700;
+}
+
+/* ----------------------------------------------------------
+   MÉTRICAS
+   ---------------------------------------------------------- */
+
+div[data-testid="stMetric"] {
+    background: white;
+    border: 1px solid #fed7aa;
+    border-radius: 15px;
+    padding: 14px 16px;
+    box-shadow: 0 3px 12px rgba(124, 45, 18, 0.05);
+}
+
+div[data-testid="stMetric"] label {
+    color: var(--dino-texto-suave);
+    font-weight: 650;
+}
+
+div[data-testid="stMetricValue"] {
+    color: var(--dino-marrom-escuro);
+}
+
+/* ----------------------------------------------------------
+   MENSAGENS
+   ---------------------------------------------------------- */
+
+div[data-testid="stAlert"] {
+    border-radius: 12px;
+    border-width: 1px;
+}
+
+/* ----------------------------------------------------------
+   TABELAS
+   ---------------------------------------------------------- */
+
+div[data-testid="stDataFrame"] {
+    border: 1px solid var(--dino-borda);
+    border-radius: 14px;
+    overflow: hidden;
+    background: white;
+}
+
+/* ----------------------------------------------------------
+   ABAS
+   ---------------------------------------------------------- */
+
+button[data-baseweb="tab"] {
+    color: var(--dino-texto-suave);
+    font-weight: 650;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: var(--dino-marrom);
+}
+
+/* ----------------------------------------------------------
+   DIVISORES
+   ---------------------------------------------------------- */
+
+hr {
+    border-color: #fed7aa !important;
+}
+
+/* ----------------------------------------------------------
+   IMAGENS
+   ---------------------------------------------------------- */
+
+div[data-testid="stImage"] img {
+    border-radius: 14px;
+}
+
+/* ----------------------------------------------------------
+   SCROLLBAR
+   ---------------------------------------------------------- */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff7ed;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fdba74;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fb923c;
+}
+
+/* ----------------------------------------------------------
+   RODAPÉ DO STREAMLIT
+   ---------------------------------------------------------- */
+
+footer {
+    visibility: hidden;
+}
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .main .block-container {
+        padding-top: 1rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        padding-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.45rem !important;
+    }
+
+    h3 {
+        font-size: 1.18rem !important;
+    }
+
+    .home-topo,
+    .cadastro-topo,
+    .pets-topo,
+    .avaliacao-topo,
+    .dashboard-topo,
+    .relatorio-topo {
+        padding: 18px 18px !important;
+        border-radius: 15px !important;
+    }
+
+    .home-topo h1,
+    .cadastro-topo h1,
+    .pets-topo h1,
+    .avaliacao-topo h1,
+    .dashboard-topo h1,
+    .relatorio-topo h1 {
+        font-size: 1.65rem !important;
+    }
+
+    .menu-aviso {
+        padding: 16px 16px !important;
+    }
+
+    div[data-testid="stMetric"] {
+        padding: 12px 12px;
+    }
+
+    .stButton > button,
+    .stFormSubmitButton > button,
+    .stDownloadButton > button {
+        min-height: 48px;
+        font-size: 1rem;
+    }
+
+    div[data-testid="column"] {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+}
+
+/* ----------------------------------------------------------
+   TELAS MUITO PEQUENAS
+   ---------------------------------------------------------- */
+
+@media (max-width: 520px) {
+
+    .main .block-container {
+        padding-left: 0.55rem;
+        padding-right: 0.55rem;
+    }
+
+    .home-topo,
+    .cadastro-topo,
+    .pets-topo,
+    .avaliacao-topo,
+    .dashboard-topo,
+    .relatorio-topo,
+    .pet-card,
+    .painel-card,
+    .atalho-card {
+        border-radius: 13px !important;
+    }
+
+    p,
+    label,
+    input,
+    textarea,
+    button {
+        font-size: 0.96rem !important;
+    }
+
+    section[data-testid="stSidebar"] {
+        min-width: 245px;
+    }
+}
+
+/* ==========================================================
+   NAVEGAÇÃO PERSONALIZADA - DINOPETANIMAL PRO V2.0
+   ========================================================== */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 2px 4px 18px 4px;
+    padding: 14px 12px;
+    border: 1px solid #fdba74;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 4px 14px rgba(124, 45, 18, 0.08);
+}
+
+.sidebar-brand-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.sidebar-brand-title {
+    color: #7c2d12;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.05;
+}
+
+.sidebar-brand-pro {
+    color: #c2410c;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.sidebar-footer {
+    margin-top: 22px;
+    padding: 14px 10px 18px;
+    border-top: 1px solid #fdba74;
+    color: #7c2d12;
+    text-align: center;
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+/* Navegação criada por st.navigation */
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a,
+section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"] {
+    margin: 3px 8px;
+    padding: 10px 12px;
+    border-radius: 11px;
+    color: #334155 !important;
+    font-weight: 600;
+    transition: all 0.18s ease;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover,
+section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"]:hover {
+    background: rgba(194, 65, 12, 0.12) !important;
+    color: #7c2d12 !important;
+    transform: translateX(2px);
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-current="page"],
+section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"][aria-current="page"] {
+    background: linear-gradient(90deg, #9a3412, #c2410c) !important;
+    color: #ffffff !important;
+    font-weight: 750 !important;
+    box-shadow: 0 6px 15px rgba(154, 52, 18, 0.22);
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-current="page"] span,
+section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"][aria-current="page"] span,
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-current="page"] p,
+section[data-testid="stSidebar"] a[data-testid="stSidebarNavLink"][aria-current="page"] p {
+    color: #ffffff !important;
+}
+
+/* Oculta o cabeçalho automático de agrupamento quando houver apenas um grupo. */
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] > div > div > div:first-child:empty {
+    display: none;
+}
