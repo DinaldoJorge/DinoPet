@@ -683,44 +683,32 @@ section[data-testid="stSidebar"] [aria-current="page"] span {
 }
 
 /* ==========================================================
-   CABEÇALHO DO STREAMLIT
-   Fica sempre escuro e não alterna para branco.
+   CABEÇALHO DO STREAMLIT - OCULTO
+   Remove a barra superior, Share, GitHub, editar e menu.
    ========================================================== */
 
-header[data-testid="stHeader"] {
-    background: #111827 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-header[data-testid="stHeader"]::before {
-    background: #111827 !important;
-}
-
+header[data-testid="stHeader"],
+[data-testid="stHeader"],
 [data-testid="stToolbar"],
 [data-testid="stDecoration"],
-[data-testid="stStatusWidget"] {
-    background: transparent !important;
+[data-testid="stStatusWidget"],
+[data-testid="stToolbarActions"],
+[data-testid="stMainMenu"],
+#MainMenu {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
 }
 
-header[data-testid="stHeader"] button,
-header[data-testid="stHeader"] button span,
-header[data-testid="stHeader"] button svg,
-[data-testid="stToolbar"] button,
-[data-testid="stToolbar"] button span,
-[data-testid="stToolbar"] button svg {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-}
-
-/* Menu do canto superior direito */
-[data-testid="stMainMenu"] button,
-[data-testid="stToolbarActions"] button {
-    color: #ffffff !important;
-}
-
-/* Evita faixa branca atrás do cabeçalho */
+/* Remove qualquer espaço deixado pelo cabeçalho */
 [data-testid="stAppViewContainer"] {
+    margin-top: 0 !important;
     min-height: 100vh;
+}
+
+.main .block-container {
+    padding-top: 1rem !important;
 }
 
 /* Links */
